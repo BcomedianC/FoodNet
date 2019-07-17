@@ -2,6 +2,7 @@ import os
 import tarfile
 from urllib.request import urlretrieve
 
+
 class Datasets(object):
     """
     A utility class used to download the necessary dataset(s).
@@ -16,10 +17,11 @@ class Datasets(object):
         if not os.path.isdir(self.DOWNLOAD_URL):
             os.makedirs(self.DOWNLOAD_URL)
 
+        if not os.path.isdir(self.DOWNLOAD_DIR):
+            os.makedirs(self.DOWNLOAD_DIR)
+
         path = os.path.join(self.DOWNLOAD_DIR, file_name)
         urlretrieve(self.DOWNLOAD_URL, path)
         tgz_file = tarfile.open(path)
         tgz_file.extractall(path=self.DOWNLOAD_DIR)
         tgz_file.close()
-
-        
